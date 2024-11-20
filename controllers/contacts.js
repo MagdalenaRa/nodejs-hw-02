@@ -26,7 +26,7 @@ export const postContact = async (req, res) => {
 
 export const deleteContact = async (req, res) => {
     const { contactId } = req.params
-    const result = await Contact.findByIdAndRemove({ _id: contactId });
+    const result = await Contact.findByIdAndDelete({ _id: contactId });
     if (!result) {
         throw HttpError(404, "Not found")
     }
