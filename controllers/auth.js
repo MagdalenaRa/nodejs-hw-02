@@ -59,11 +59,15 @@ export const getCurrent = async (req, res) => {
 
 export const logout = async (req, res) => {
     const { _id } = req.user;
+    const user = await User.findById(_id);
+
+    if (!user) {
+        throw HttpError(401, 'Not authorized');
+    }
+
     await User.findByIdAndUpdate(_id, { token: '' });
 
-    res.status(204).json({
-        message: 'No Content'
-    })
+    res.status(204).send(); 
 };
 
 export const patchSubscription = async (req, res) => {
