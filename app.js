@@ -21,6 +21,7 @@ app.use(express.json())
 app.use(express.static(path.resolve(__dirname, './public')))
 // console.log(path.resolve(__dirname, '/public'))
 setJWTStrategy();
+app.use('/avatars', express.static(path.join(__dirname, 'public/avatars')));
 
 app.use('/api/contacts', contactsRouter)
 app.use('/api/users', usersRouter)
